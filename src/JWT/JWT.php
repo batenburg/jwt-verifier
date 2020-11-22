@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Jwt;
+namespace Batenburg\JWTVerifier\JWT;
 
-final class Jwt
+final class JWT
 {
 
     private string $jwt;

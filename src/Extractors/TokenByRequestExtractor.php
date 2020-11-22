@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Extractors;
+namespace Batenburg\JWTVerifier\Extractors;
 
-use Batenburg\JwtVerifier\Extractors\Contracts\TokenExtractor;
+use Batenburg\JWTVerifier\Extractors\Contracts\TokenExtractor;
 use Symfony\Component\HttpFoundation\Request;
 
 class TokenByRequestExtractor implements TokenExtractor

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\JwkFetchers;
+namespace Batenburg\JWTVerifier\JWKFetchers;
 
-use Batenburg\JwtVerifier\JwkFetchers\Adaptors\Contracts\Adaptor;
-use Batenburg\JwtVerifier\JwkFetchers\Contracts\JwkFetcher as JwkFetcherInterface;
-use Batenburg\JwtVerifier\JwkFetchers\Exceptions\UnexpectedResponseException;
-use Batenburg\JwtVerifier\JwkFetchers\Exceptions\UnexpectedStatusException;
+use Batenburg\JWTVerifier\JWKFetchers\Adaptors\Contracts\Adaptor;
+use Batenburg\JWTVerifier\JWKFetchers\Contracts\KeyFetcher as KeyFetcherInterface;
+use Batenburg\JWTVerifier\JWKFetchers\Exceptions\UnexpectedResponseException;
+use Batenburg\JWTVerifier\JWKFetchers\Exceptions\UnexpectedStatusException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 
-class JwkFetcher implements JwkFetcherInterface
+class KeyFetcher implements KeyFetcherInterface
 {
 
     private ClientInterface $client;
@@ -31,7 +31,7 @@ class JwkFetcher implements JwkFetcherInterface
     }
 
     /**
-     * @return array
+     * @return string[]
      * @throws UnexpectedResponseException
      * @throws UnexpectedStatusException
      * @throws GuzzleException

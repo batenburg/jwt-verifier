@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Test\Unit\Exceptions;
+namespace Batenburg\JWTVerifier\Test\Unit\Exceptions;
 
 use PHPUnit\Framework\TestCase;
 use Throwable;

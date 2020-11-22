@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Test\Unit\Extractors;
+namespace Batenburg\JWTVerifier\Test\Unit\Extractors;
 
-use Batenburg\JwtVerifier\Extractors\Contracts\TokenExtractor;
-use Batenburg\JwtVerifier\Extractors\TokenExtractorCombiner;
+use Batenburg\JWTVerifier\Extractors\Contracts\TokenExtractor;
+use Batenburg\JWTVerifier\Extractors\TokenExtractorCombiner;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Batenburg\JwtVerifier\Extractors\TokenExtractorCombiner
+ * @covers \Batenburg\JWTVerifier\Extractors\TokenExtractorCombiner
  */
 class TokenExtractorCombinerTest extends TestCase
 {
@@ -42,7 +42,7 @@ class TokenExtractorCombinerTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenExtractorCombiner::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenExtractorCombiner::extract
      */
     public function testVerify(): void
     {
@@ -60,7 +60,7 @@ class TokenExtractorCombinerTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenExtractorCombiner::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenExtractorCombiner::extract
      */
     public function testVerifyWithoutToken(): void
     {
@@ -78,7 +78,7 @@ class TokenExtractorCombinerTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenExtractorCombiner::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenExtractorCombiner::extract
      */
     public function testVerifyWithTwoTokens(): void
     {

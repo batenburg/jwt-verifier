@@ -2,21 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Test\Unit\Extractors;
+namespace Batenburg\JWTVerifier\Test\Unit\Extractors;
 
-use Batenburg\JwtVerifier\Extractors\TokenByRequestExtractor;
-use http\Exception\InvalidArgumentException;
+use Batenburg\JWTVerifier\Extractors\TokenByRequestExtractor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @covers \Batenburg\JwtVerifier\Extractors\TokenByRequestExtractor
+ * @covers \Batenburg\JWTVerifier\Extractors\TokenByRequestExtractor
  */
 class TokenByRequestExtractorTest extends TestCase
 {
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenByRequestExtractor::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenByRequestExtractor::extract
      */
     public function testExtract(): void
     {
@@ -32,7 +31,7 @@ class TokenByRequestExtractorTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenByRequestExtractor::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenByRequestExtractor::extract
      */
     public function testExtractWithoutAccessToken(): void
     {

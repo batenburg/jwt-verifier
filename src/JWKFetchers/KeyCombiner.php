@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\JwkFetchers;
+namespace Batenburg\JWTVerifier\JWKFetchers;
 
-use Batenburg\JwtVerifier\JwkFetchers\Contracts\JwkFetcher as JwkFetcherInterface;
+use Batenburg\JWTVerifier\JWKFetchers\Contracts\KeyFetcher;
 
-class JwkCombiner implements JwkFetcherInterface
+class KeyCombiner implements KeyFetcher
 {
 
     private array $fetchers;
 
-    public function __construct(JwkFetcherInterface ...$fetchers)
+    public function __construct(KeyFetcher...$fetchers)
     {
         $this->fetchers = $fetchers;
     }

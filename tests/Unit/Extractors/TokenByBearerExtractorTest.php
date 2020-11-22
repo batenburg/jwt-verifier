@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Test\Unit\Extractors;
+namespace Batenburg\JWTVerifier\Test\Unit\Extractors;
 
-use Batenburg\JwtVerifier\Extractors\TokenByBearerExtractor;
+use Batenburg\JWTVerifier\Extractors\TokenByBearerExtractor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @covers \Batenburg\JwtVerifier\Extractors\TokenByBearerExtractor
+ * @covers \Batenburg\JWTVerifier\Extractors\TokenByBearerExtractor
  */
 class TokenByBearerExtractorTest extends TestCase
 {
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenByBearerExtractor::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenByBearerExtractor::extract
      */
     public function testExtract(): void
     {
@@ -31,7 +31,7 @@ class TokenByBearerExtractorTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenByBearerExtractor::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenByBearerExtractor::extract
      */
     public function testExtractWithoutAuthorizationHeader(): void
     {
@@ -45,7 +45,7 @@ class TokenByBearerExtractorTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\Extractors\TokenByBearerExtractor::extract
+     * @covers \Batenburg\JWTVerifier\Extractors\TokenByBearerExtractor::extract
      */
     public function testExtractFails(): void
     {

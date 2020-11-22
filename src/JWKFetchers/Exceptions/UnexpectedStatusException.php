@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\JwkFetchers\Exceptions;
+namespace Batenburg\JWTVerifier\JWKFetchers\Exceptions;
 
 use Exception;
 use Throwable;

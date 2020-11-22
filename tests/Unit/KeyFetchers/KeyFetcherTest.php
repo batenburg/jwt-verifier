@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Test\Unit\JwkFetchers;
+namespace Batenburg\JWTVerifier\Test\Unit\KeyFetchers;
 
-use Batenburg\JwtVerifier\JwkFetchers\Adaptors\Contracts\Adaptor;
-use Batenburg\JwtVerifier\JwkFetchers\Exceptions\UnexpectedResponseException;
-use Batenburg\JwtVerifier\JwkFetchers\Exceptions\UnexpectedStatusException;
-use Batenburg\JwtVerifier\JwkFetchers\JwkFetcher;
+use Batenburg\JWTVerifier\JWKFetchers\Adaptors\Contracts\Adaptor;
+use Batenburg\JWTVerifier\JWKFetchers\Exceptions\UnexpectedResponseException;
+use Batenburg\JWTVerifier\JWKFetchers\Exceptions\UnexpectedStatusException;
+use Batenburg\JWTVerifier\JWKFetchers\KeyFetcher;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -15,9 +15,9 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * @covers \Batenburg\JwtVerifier\JwkFetchers\JwkFetcher
+ * @covers \Batenburg\JWTVerifier\JWKFetchers\KeyFetcher
  */
-class JwkFetcherTest extends TestCase
+class KeyFetcherTest extends TestCase
 {
 
     /**
@@ -37,7 +37,7 @@ class JwkFetcherTest extends TestCase
      */
     private $adaptor;
 
-    private JwkFetcher $jwkFetcher;
+    private KeyFetcher $jwkFetcher;
 
     protected function setUp(): void
     {
@@ -47,7 +47,7 @@ class JwkFetcherTest extends TestCase
         $this->response = $this->createMock(ResponseInterface::class);
         $this->wellKnown = 'https://localhost/auth/well-known';
         $this->adaptor = $this->createMock(Adaptor::class);
-        $this->jwkFetcher = new JwkFetcher(
+        $this->jwkFetcher = new KeyFetcher(
             $this->client,
             $this->wellKnown,
             $this->adaptor
@@ -55,7 +55,7 @@ class JwkFetcherTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\JwkFetchers\JwkFetcher::getKeys
+     * @covers \Batenburg\JWTVerifier\JWKFetchers\KeyFetcher::getKeys
      * @throws UnexpectedResponseException
      * @throws UnexpectedStatusException
      * @throws GuzzleException
@@ -72,10 +72,10 @@ class JwkFetcherTest extends TestCase
             ->willReturn(200);
         $this->response->expects($this->once())
             ->method('getBody')
-            ->willReturn($this->getExpectedJwksResponse($jwksUri = 'https://oauth.lennart-peters.dev/api/v1/keys'));
+            ->willReturn($this->getExpectedJwksResponse($jku = 'https://oauth.lennart-peters.dev/api/v1/keys'));
         $this->adaptor->expects($this->once())
             ->method('getKeys')
-            ->with($jwksUri)
+            ->with($jku)
             ->willReturn($keys = ['keys']);
         // Execute
         $result = $this->jwkFetcher->getKeys();
@@ -84,7 +84,7 @@ class JwkFetcherTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\JwkFetchers\JwkFetcher::getKeys
+     * @covers \Batenburg\JWTVerifier\JWKFetchers\KeyFetcher::getKeys
      * @throws UnexpectedResponseException
      * @throws UnexpectedStatusException
      * @throws GuzzleException
@@ -109,7 +109,7 @@ class JwkFetcherTest extends TestCase
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\JwkFetchers\JwkFetcher::getKeys
+     * @covers \Batenburg\JWTVerifier\JWKFetchers\KeyFetcher::getKeys
      * @throws UnexpectedResponseException
      * @throws UnexpectedStatusException
      * @throws GuzzleException

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\JwkFetchers\Contracts;
+namespace Batenburg\JWTVerifier\JWKFetchers\Contracts;
 
-interface JwkFetcher
+interface KeyFetcher
 {
     /**
      * @return string[]

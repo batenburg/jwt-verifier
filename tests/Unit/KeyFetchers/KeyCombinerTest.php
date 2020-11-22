@@ -2,44 +2,44 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Test\Unit\JwkFetchers;
+namespace Batenburg\JWTVerifier\Test\Unit\KeyFetchers;
 
-use Batenburg\JwtVerifier\JwkFetchers\Contracts\JwkFetcher;
-use Batenburg\JwtVerifier\JwkFetchers\JwkCombiner;
+use Batenburg\JWTVerifier\JWKFetchers\Contracts\KeyFetcher;
+use Batenburg\JWTVerifier\JWKFetchers\KeyCombiner;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Batenburg\JwtVerifier\JwkFetchers\JwkCombiner
+ * @covers \Batenburg\JWTVerifier\JWKFetchers\KeyCombiner
  */
-class JwkCombinerTest extends TestCase
+class KeyCombinerTest extends TestCase
 {
 
     /**
-     * @var JwkFetcher|MockObject
+     * @var KeyFetcher|MockObject
      */
     private $firstJwkFetcher;
 
     /**
-     * @var JwkFetcher|MockObject
+     * @var KeyFetcher|MockObject
      */
     private $secondJwkFetcher;
 
-    private JwkCombiner $jwkCombiner;
+    private KeyCombiner $jwkCombiner;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->firstJwkFetcher = $this->createMock(JwkFetcher::class);
-        $this->secondJwkFetcher = $this->createMock(JwkFetcher::class);
-        $this->jwkCombiner = new JwkCombiner($this->firstJwkFetcher, $this->secondJwkFetcher);
+        $this->firstJwkFetcher = $this->createMock(KeyFetcher::class);
+        $this->secondJwkFetcher = $this->createMock(KeyFetcher::class);
+        $this->jwkCombiner = new KeyCombiner($this->firstJwkFetcher, $this->secondJwkFetcher);
     }
 
     /**
-     * @covers \Batenburg\JwtVerifier\JwkFetchers\JwkCombiner::getKeys
+     * @covers \Batenburg\JWTVerifier\JWKFetchers\KeyFetcher::getKeys
      */
-    public function testGetKeys(): void
+    public function testGetPems(): void
     {
         // Setup
         $expected = [
@@ -51,7 +51,7 @@ class JwkCombinerTest extends TestCase
             ->willReturn(array_slice($expected, 0, 1));
         $this->secondJwkFetcher->expects($this->once())
             ->method('getKeys')
-            ->willReturn(array_slice($expected,1, 1));
+            ->willReturn(array_slice($expected, 1, 1));
         // Execute
         $result = $this->jwkCombiner->getKeys();
         // Validate

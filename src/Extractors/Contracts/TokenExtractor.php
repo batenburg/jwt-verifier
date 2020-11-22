@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JwtVerifier\Extractors\Contracts;
+namespace Batenburg\JWTVerifier\Extractors\Contracts;
 
 interface TokenExtractor
 {
