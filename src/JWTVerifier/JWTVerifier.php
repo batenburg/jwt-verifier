@@ -42,7 +42,7 @@ class JWTVerifier
     public function verify(string $jwt): JWT
     {
         if ($jwt === '') {
-            throw new JWTVerifierException('No token provided');
+            throw new JWTVerifierException('No token provided.');
         }
 
         $decoded = $this->adaptor->decode($jwt, $this->keys);
