@@ -7,7 +7,6 @@ namespace Batenburg\JWTVerifier\Test\Unit\JWTVerifier\Adaptors;
 use Batenburg\JWTVerifier\JWT\JWT;
 use Batenburg\JWTVerifier\JWTVerifier\Adaptors\LcobucciAdaptor;
 use Batenburg\JWTVerifier\JWTVerifier\Exceptions\JWTVerifierException;
-use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Parsing\Encoder;
 use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Ecdsa;
