@@ -148,7 +148,7 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         $this->adaptor->expects($this->once())
             ->method('decode')
             ->with($token, $this->keys)
-            ->willReturn($jwt = new JWT($token, $claims));
+            ->willReturn($jwt = new JWT($token, $headers, $claims));
         // Execute
         $this->jwtVerifier->verify($token);
     }
@@ -171,7 +171,7 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         $this->adaptor->expects($this->once())
             ->method('decode')
             ->with($token, $this->keys)
-            ->willReturn($jwt = new JWT($token, $claims));
+            ->willReturn($jwt = new JWT($token, $headers, $claims));
         // Execute
         $this->jwtVerifier->verify($token);
     }
@@ -192,7 +192,7 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         $this->adaptor->expects($this->once())
             ->method('decode')
             ->with($token, $this->keys)
-            ->willReturn($jwt = new JWT($token, $claims));
+            ->willReturn($jwt = new JWT($token, $headers, $claims));
         // Execute
         $result = $this->jwtVerifier->verify($token);
         // Validate

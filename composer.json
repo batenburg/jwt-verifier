@@ -18,8 +18,8 @@
     "require-dev": {
         "lcobucci/jwt": "^3.3",
         "phpunit/phpunit": "^9.0",
-        "web-token/jwt-framework": "^2.2",
-        "squizlabs/php_codesniffer": "^3.5"
+        "squizlabs/php_codesniffer": "^3.5",
+        "web-token/jwt-framework": "^2.2"
     },
     "autoload": {
         "psr-4": {
