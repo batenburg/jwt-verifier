@@ -11,7 +11,7 @@ use Lcobucci\JWT\Parsing\Encoder;
 use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Ecdsa;
 use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\Signer\RSA;
+use Lcobucci\JWT\Signer\Rsa;
 use Lcobucci\JWT\Token;
 use PHPUnit\Framework\TestCase;
 
@@ -118,9 +118,9 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
             new Ecdsa\Sha256(),
             new Ecdsa\Sha384(),
             new Ecdsa\Sha512(),
-            new RSA\Sha256(),
-            new RSA\Sha384(),
-            new RSA\Sha512(),
+            new Rsa\Sha256(),
+            new Rsa\Sha384(),
+            new Rsa\Sha512(),
         );
     }
 
@@ -146,7 +146,7 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
         // Exception
         $this->expectException(JWTVerifierException::class);
         // Setup
-        $jwt = $this->generateToken([], [], new RSA\Sha256(), new Key($this->privateKey, $this->passphrase));
+        $jwt = $this->generateToken([], [], new Rsa\Sha256(), new Key($this->privateKey, $this->passphrase));
         $keys = [];
         // Execute
         $this->lcobucciAdaptor->decode($jwt, $keys);
@@ -163,7 +163,7 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
         $jwt = $this->generateToken(
             ['kid' => '5550f67f-e228-4857-a0f8-7c2feb9e16b7'],
             [],
-            new RSA\Sha256(),
+            new Rsa\Sha256(),
             new Key($this->privateKey, $this->passphrase)
         );
         $keys = [];
@@ -182,7 +182,7 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
         $jwt = $this->generateToken(
             ['kid' => '5550f67f-e228-4857-a0f8-7c2feb9e16b7'],
             [],
-            new RSA\Sha256(),
+            new Rsa\Sha256(),
             new Key($this->privateKey, $this->passphrase)
         );
         $keys = [
@@ -206,7 +206,7 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
                 'kid' => '5550f67f-e228-4857-a0f8-7c2feb9e16b7'
             ],
             [],
-            new RSA\Sha256(),
+            new Rsa\Sha256(),
             new Key($this->privateKey, $this->passphrase)
         );
         $keys = [
@@ -230,7 +230,7 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
                 'kid' => '5550f67f-e228-4857-a0f8-7c2feb9e16b7'
             ],
             [],
-            new RSA\Sha256(),
+            new Rsa\Sha256(),
             new Key($this->privateKey, $this->passphrase)
         );
         $keys = [
@@ -253,7 +253,7 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
                 'kid' => '5550f67f-e228-4857-a0f8-7c2feb9e16b7'
             ],
             $claims = [],
-            new RSA\Sha256(),
+            new Rsa\Sha256(),
             new Key($this->privateKey, $this->passphrase)
         );
         $keys = [
