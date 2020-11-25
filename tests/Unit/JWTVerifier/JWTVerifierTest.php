@@ -203,6 +203,10 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
     {
         $builder = (new Builder());
 
+        if (isset($claims['iss'])) {
+            $builder->issuedAt($claims['iss']);
+        }
+
         foreach ($claims as $name => $value) {
             $builder->withClaim($name, $value);
         }
