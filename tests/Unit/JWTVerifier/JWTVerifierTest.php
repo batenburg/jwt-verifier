@@ -204,7 +204,8 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         $builder = (new Builder());
 
         if (isset($claims['iss'])) {
-            $builder->issuedAt($claims['iss']);
+            $builder->issuedBy($claims['iss']);
+            unset($claims['iss']);
         }
 
         foreach ($claims as $name => $value) {
@@ -216,6 +217,6 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         }
 
         return $builder->getToken(new Sha512, new Key($this->privateKey, $this->passphrase))
-            ->__toString();
+            ->toString();
     }
 }

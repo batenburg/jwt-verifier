@@ -37,35 +37,39 @@ class LcobucciAdaptor implements Adaptor
 
         $decoded = (new Parser())->parse($jwt);
 
-        if (!$decoded->hasHeader('kid')) {
+        if (!$decoded->headers()->has('kid')) {
             throw new JWTVerifierException('No KID set.');
         }
 
-        if (!array_key_exists($decoded->getHeader('kid'), $keys)) {
+        if (!array_key_exists($decoded->headers()->get('kid'), $keys)) {
             throw new JWTVerifierException('No key found');
         }
 
-        if (!$decoded->hasHeader('alg')) {
+        if (!$decoded->headers()->has('alg')) {
             throw new JWTVerifierException('Algorithm not set.');
         }
 
         $signers = array_filter(
             $this->signers,
-            fn (Signer $signer) => $signer->getAlgorithmId() === $decoded->getHeader('alg')
+            fn (Signer $signer) => $signer->getAlgorithmId() === $decoded->headers()->get('alg')
         );
 
         if (!$signer = reset($signers)) {
             throw new JWTVerifierException('No signer found.');
         }
 
-        if (!$decoded->verify($signer, new Key($keys[$decoded->getHeader('kid')]))) {
+        if (!$decoded->signature()->verify(
+            $signer,
+            $decoded->payload(),
+            new Key($keys[$decoded->headers()->get('kid')])
+        )) {
             throw new JWTVerifierException('Invalid signature.');
         }
 
         return new JWT(
             $jwt,
-            $decoded->getHeaders(),
-            $decoded->getClaims()
+            $decoded->headers()->all(),
+            $decoded->claims()->all()
         );
     }
 }

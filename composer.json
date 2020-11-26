@@ -16,7 +16,7 @@
         "symfony/framework-bundle": "^4.4 || ^5.1 || ^5.2"
     },
     "require-dev": {
-        "lcobucci/jwt": "^3.3",
+        "lcobucci/jwt": "^3.4",
         "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.5",
         "web-token/jwt-framework": "^2.2"

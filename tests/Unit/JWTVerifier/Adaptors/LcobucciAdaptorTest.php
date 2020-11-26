@@ -8,11 +8,13 @@ use Batenburg\JWTVerifier\JWT\JWT;
 use Batenburg\JWTVerifier\JWTVerifier\Adaptors\LcobucciAdaptor;
 use Batenburg\JWTVerifier\JWTVerifier\Exceptions\JWTVerifierException;
 use Lcobucci\JWT\Parsing\Encoder;
+use Lcobucci\JWT\Signature;
 use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Ecdsa;
 use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa;
 use Lcobucci\JWT\Token;
+use Lcobucci\JWT\Token\DataSet;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -277,14 +279,12 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
             $encoder->base64UrlEncode($encoder->jsonEncode($claims))
         ];
 
-        $signature = $signer->sign(implode('.', $payload), $key);
+        $hash = $signer->sign(implode('.', $payload), $key)->hash();
 
-        if ($signature !== null) {
-            $payload[] = $encoder->base64UrlEncode($signature);
-        }
+        $signature = new Signature($hash, $encoder->base64UrlEncode($hash));
 
         $token = new Token($headers, $claims, $signature, $payload);
 
-        return $token->__toString();
+        return $token->toString();
     }
 }
