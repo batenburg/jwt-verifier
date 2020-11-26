@@ -12,3 +12,7 @@ This package can be used with both Symfony as Laravel. For both frameworks you n
 1. Have a separate packages for Symfony and Laravel which use this packages.
 2. Have a request in this package, so we do need require the Symfony request anymore as a dependency.
 3. Add multiple adaptors to the package, so we can support more Packages.
+
+## Open for suggestion
+
+Please make tickets in github or provide a PR.
