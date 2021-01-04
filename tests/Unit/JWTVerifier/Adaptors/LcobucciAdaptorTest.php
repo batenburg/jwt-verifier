@@ -265,8 +265,8 @@ AdIyGh2HZpJI3uy4uY6xs34JlNtQe+xdztJ9tdnevNVPdD26a8agdwJKjnGLfg/j
         $result = $this->lcobucciAdaptor->decode($jwt, $keys);
         // Validate
         $this->assertInstanceOf(JWT::class, $result);
-        $this->assertSame($headers, $result->getHeaders());
-        $this->assertSame($claims, $result->getClaims());
+        $this->assertSame($headers, $result->getHeaders()->all());
+        $this->assertSame($claims, $result->getClaims()->all());
         $this->assertSame($jwt, $result->getJwt());
     }
 

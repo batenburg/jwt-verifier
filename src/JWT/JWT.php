@@ -9,11 +9,11 @@ final class JWT
 
     private string $jwt;
 
-    private array $headers;
+    private DataSet $headers;
 
-    private array $claims;
+    private DataSet $claims;
 
-    public function __construct(string $jwt, array $headers, array $claims)
+    public function __construct(string $jwt, DataSet $headers, DataSet $claims)
     {
         $this->jwt = $jwt;
         $this->headers = $headers;
@@ -25,12 +25,12 @@ final class JWT
         return $this->jwt;
     }
 
-    public function getHeaders(): array
+    public function getHeaders(): DataSet
     {
         return $this->headers;
     }
 
-    public function getClaims(): array
+    public function getClaims(): DataSet
     {
         return $this->claims;
     }

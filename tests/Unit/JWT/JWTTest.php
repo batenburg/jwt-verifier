@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Batenburg\JWTVerifier\Test\Unit\JWT;
 
 use Batenburg\JWTVerifier\JWT\JWT;
+use Batenburg\JWTVerifier\JWT\DataSet;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,12 +23,12 @@ class JWTTest extends TestCase
     public function testAJwtIsSeededProperly(string $jwt, array $headers, array $claims): void
     {
         // Setup
-        $result = new JWT($jwt, $headers, $claims);
+        $result = new JWT($jwt, new DataSet($headers), new DataSet($claims));
         // Validate
         $this->assertInstanceOf(JWT::class, $result);
         $this->assertSame($jwt, $result->getJwt());
-        $this->assertSame($headers, $result->getHeaders());
-        $this->assertSame($claims, $result->getClaims());
+        $this->assertSame($headers, $result->getHeaders()->all());
+        $this->assertSame($claims, $result->getClaims()->all());
     }
 
     public function jwtScenarioProvider(): array

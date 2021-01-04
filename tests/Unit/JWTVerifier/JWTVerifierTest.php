@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Batenburg\JWTVerifier\Test\Unit\JWTVerifier;
 
 use Batenburg\JWTVerifier\JWT\JWT;
+use Batenburg\JWTVerifier\JWT\DataSet;
 use Batenburg\JWTVerifier\JWTVerifier\Adaptors\Contracts\Adaptor;
 use Batenburg\JWTVerifier\JWTVerifier\Exceptions\JWTVerifierException;
 use Batenburg\JWTVerifier\JWTVerifier\JWTVerifier;
@@ -148,7 +149,7 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         $this->adaptor->expects($this->once())
             ->method('decode')
             ->with($token, $this->keys)
-            ->willReturn($jwt = new JWT($token, $headers, $claims));
+            ->willReturn($jwt = new JWT($token, new DataSet($headers), new DataSet($claims)));
         // Execute
         $this->jwtVerifier->verify($token);
     }
@@ -171,7 +172,7 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         $this->adaptor->expects($this->once())
             ->method('decode')
             ->with($token, $this->keys)
-            ->willReturn($jwt = new JWT($token, $headers, $claims));
+            ->willReturn($jwt = new JWT($token, new DataSet($headers), new DataSet($claims)));
         // Execute
         $this->jwtVerifier->verify($token);
     }
@@ -192,7 +193,7 @@ kJ84fpSUbuYVRm7omxHTXMUCAwEAAQ==
         $this->adaptor->expects($this->once())
             ->method('decode')
             ->with($token, $this->keys)
-            ->willReturn($jwt = new JWT($token, $headers, $claims));
+            ->willReturn($jwt = new JWT($token, new DataSet($headers), new DataSet($claims)));
         // Execute
         $result = $this->jwtVerifier->verify($token);
         // Validate

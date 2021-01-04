@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Batenburg\JWTVerifier\JWTVerifier\Adaptors;
 
 use Batenburg\JWTVerifier\JWT\JWT;
+use Batenburg\JWTVerifier\JWT\DataSet;
 use Batenburg\JWTVerifier\JWTVerifier\Adaptors\Contracts\Adaptor;
 use Batenburg\JWTVerifier\JWTVerifier\Exceptions\JWTVerifierException;
 use Lcobucci\JWT\Parser;
@@ -68,8 +69,8 @@ class LcobucciAdaptor implements Adaptor
 
         return new JWT(
             $jwt,
-            $decoded->headers()->all(),
-            $decoded->claims()->all()
+            new DataSet($decoded->headers()->all()),
+            new DataSet($decoded->claims()->all())
         );
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Batenburg\JWTVerifier\JWTVerifier;
 
 use Batenburg\JWTVerifier\JWT\JWT;
+use Batenburg\JWTVerifier\JWT\DataSet;
 use Batenburg\JWTVerifier\JWTVerifier\Adaptors\Contracts\Adaptor;
 use Batenburg\JWTVerifier\JWTVerifier\Exceptions\JWTVerifierException;
 
@@ -53,18 +54,20 @@ class JWTVerifier
     }
 
     /**
-     * @param string[] $claims
+     * @param DataSet $claims
      * @throws JWTVerifierException
      */
-    private function validateClientAndIssuer(array $claims)
+    private function validateClientAndIssuer(DataSet $claims)
     {
-        if (!isset($claims['cid']) || !isset($claims['iss'])) {
+        if (!$claims->has('cid') || !$claims->has('iss')) {
             throw new JWTVerifierException('Client ID or issuer not set.');
         }
 
         $knownClients = array_filter(
             $this->knownClientIssuers,
-            fn (string $clientId, string $issuer) => $claims['cid'] === $clientId && $claims['iss'] === $issuer,
+            function (string $clientId, string $issuer) use ($claims) {
+                return $claims->get('cid') === $clientId && $claims->get('iss') === $issuer;
+            },
             ARRAY_FILTER_USE_BOTH
         );
 
