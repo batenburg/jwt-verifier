@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TokenByBearerExtractor implements TokenExtractor
 {
-
     private Request $request;
 
     public function __construct(Request $request)

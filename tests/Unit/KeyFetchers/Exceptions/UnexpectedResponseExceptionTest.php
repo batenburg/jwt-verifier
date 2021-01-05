@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
  */
 class UnexpectedResponseExceptionTest extends TestCase
 {
-
     use ExceptionTesting;
 
     protected string $class = UnexpectedResponseException::class;

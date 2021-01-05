@@ -8,7 +8,6 @@ use Batenburg\JWTVerifier\JWKFetchers\Contracts\KeyFetcher;
 
 class KeyCombiner implements KeyFetcher
 {
-
     private array $fetchers;
 
     public function __construct(KeyFetcher...$fetchers)

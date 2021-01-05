@@ -22,7 +22,6 @@ use PHPUnit\Framework\TestCase;
  */
 class LcobucciAdaptorTest extends TestCase
 {
-
     private string $privateKey = '-----BEGIN ENCRYPTED PRIVATE KEY-----
 MIIJnzBJBgkqhkiG9w0BBQ0wPDAbBgkqhkiG9w0BBQwwDgQId6z48vVa81QCAggA
 MB0GCWCGSAFlAwQBKgQQg5SNQzTOR+CF9lVqW2yjcQSCCVCJA/fN54n6rspdN2wx

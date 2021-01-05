@@ -20,7 +20,6 @@ use PHPUnit\Framework\TestCase;
  */
 class JWTVerifierTest extends TestCase
 {
-
     private string $privateKey = '-----BEGIN ENCRYPTED PRIVATE KEY-----
 MIIJnzBJBgkqhkiG9w0BBQ0wPDAbBgkqhkiG9w0BBQwwDgQIUsCG96kgeokCAggA
 MB0GCWCGSAFlAwQBKgQQGbqadkhfA+8kXDN5nGGa4ASCCVBDVAH/0gOV9mbwHvdD

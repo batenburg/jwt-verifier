@@ -19,22 +19,15 @@ use Psr\Http\Message\ResponseInterface;
  */
 class KeyFetcherTest extends TestCase
 {
-
-    /**
-     * @var ClientInterface|MockObject
-     */
+    /** @var ClientInterface|MockObject */
     private $client;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Http\Message\ResponseInterface
-     */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Http\Message\ResponseInterface */
     private $response;
 
     private string $wellKnown;
 
-    /**
-     * @var Adaptor|MockObject
-     */
+    /** @var Adaptor|MockObject */
     private $adaptor;
 
     private KeyFetcher $jwkFetcher;

@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
  */
 class JWTVerifierExceptionTest extends TestCase
 {
-
     use ExceptionTesting;
 
     protected string $class = JWTVerifierException::class;

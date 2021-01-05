@@ -12,7 +12,6 @@ use Throwable;
  */
 trait ExceptionTesting
 {
-
     public function testADefaultException(): void
     {
         // Execute

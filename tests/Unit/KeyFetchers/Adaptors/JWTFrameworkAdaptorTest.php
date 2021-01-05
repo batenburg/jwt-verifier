@@ -17,14 +17,10 @@ use PHPUnit\Framework\TestCase;
  */
 class JWTFrameworkAdaptorTest extends TestCase
 {
-    /**
-     * @var JKUFactory|MockObject
-     */
+    /** @var JKUFactory|MockObject */
     private $jkuFactory;
 
-    /**
-     * @var JWKSet|MockObject
-     */
+    /** @var JWKSet|MockObject */
     private $jwkSet;
 
     private JWTFrameworkAdaptor $jwtFrameworkAdaptor;

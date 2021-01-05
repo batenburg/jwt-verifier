@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class TokenByRequestExtractorTest extends TestCase
 {
-
     /**
      * @covers \Batenburg\JWTVerifier\Extractors\TokenByRequestExtractor::extract
      */

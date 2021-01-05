@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TokenByRequestExtractor implements TokenExtractor
 {
-
     public const QUERY_KEY = 'access_token';
 
     private Request $request;

@@ -14,15 +14,10 @@ use PHPUnit\Framework\TestCase;
  */
 class KeyCombinerTest extends TestCase
 {
-
-    /**
-     * @var KeyFetcher|MockObject
-     */
+    /** @var KeyFetcher|MockObject */
     private $firstJwkFetcher;
 
-    /**
-     * @var KeyFetcher|MockObject
-     */
+    /** @var KeyFetcher|MockObject */
     private $secondJwkFetcher;
 
     private KeyCombiner $jwkCombiner;

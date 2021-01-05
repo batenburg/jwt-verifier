@@ -8,10 +8,7 @@ use Batenburg\JWTVerifier\Extractors\Contracts\TokenExtractor;
 
 class TokenExtractorCombiner implements TokenExtractor
 {
-
-    /**
-     * @var TokenExtractor[]
-     */
+    /** @var TokenExtractor[] */
     private array $tokenExtractors;
 
     public function __construct(TokenExtractor ...$tokenExtractors)

@@ -6,7 +6,6 @@ namespace Batenburg\JWTVerifier\JWT;
 
 final class JWT
 {
-
     private string $jwt;
 
     private DataSet $headers;

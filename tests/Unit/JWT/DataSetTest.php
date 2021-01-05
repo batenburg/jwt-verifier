@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class DataSetTest extends TestCase
 {
-
     private DataSet $dataSet;
 
     private array $parameters = [

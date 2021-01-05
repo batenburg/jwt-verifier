@@ -11,14 +11,10 @@ use Batenburg\JWTVerifier\JWTVerifier\Exceptions\JWTVerifierException;
 
 class JWTVerifier
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private array $keys;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private array $knownClientIssuers;
 
     private Adaptor $adaptor;

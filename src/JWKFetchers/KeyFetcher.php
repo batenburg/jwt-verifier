@@ -13,7 +13,6 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class KeyFetcher implements KeyFetcherInterface
 {
-
     private ClientInterface $client;
 
     private string $wellKnown;
