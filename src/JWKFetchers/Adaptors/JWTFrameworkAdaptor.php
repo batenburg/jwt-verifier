@@ -60,9 +60,7 @@ class JWTFrameworkAdaptor implements Adaptor
     private function getPem(JWK $key): string
     {
         if ($this->sequence === null) {
-            $this->sequence = new Sequence();
-
-            $this->initPublicKey($key->get('n'), $key->get('e'));
+            $this->initPublicKey((string)$key->get('n'), (string)$key->get('e'));
         }
 
         $result = '-----BEGIN PUBLIC KEY-----'.PHP_EOL;
@@ -79,6 +77,10 @@ class JWTFrameworkAdaptor implements Adaptor
      */
     private function initPublicKey(string $nValue, string $eValue): void
     {
+        if ($this->sequence === null) {
+            $this->sequence = new Sequence();
+        }
+
         $oid_sequence = new Sequence();
         $oid_sequence->addChild(new ObjectIdentifier('1.2.840.113549.1.1.1'));
         $oid_sequence->addChild(new NullObject());

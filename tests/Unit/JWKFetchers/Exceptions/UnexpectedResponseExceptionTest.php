@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JWTVerifier\Test\Unit\KeyFetchers\Exceptions;
+namespace Batenburg\JWTVerifier\Test\Unit\JWKFetchers\Exceptions;
 
 use Batenburg\JWTVerifier\JWKFetchers\Exceptions\UnexpectedResponseException;
 use Batenburg\JWTVerifier\Test\Unit\Exceptions\ExceptionTesting;

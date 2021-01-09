@@ -18,7 +18,7 @@ class TokenByBearerExtractor implements TokenExtractor
 
     public function extract(): ?string
     {
-        $header = $this->request->headers->get('Authorization', '');
+        $header = (string)$this->request->headers->get('Authorization', '');
 
         if (strpos($header, 'Bearer ') === false) {
             return null;

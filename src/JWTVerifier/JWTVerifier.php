@@ -53,7 +53,7 @@ class JWTVerifier
      * @param DataSet $claims
      * @throws JWTVerifierException
      */
-    private function validateClientAndIssuer(DataSet $claims)
+    private function validateClientAndIssuer(DataSet $claims): void
     {
         if (!$claims->has('cid') || !$claims->has('iss')) {
             throw new JWTVerifierException('Client ID or issuer not set.');

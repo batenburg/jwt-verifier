@@ -56,7 +56,7 @@ class KeyFetcher implements KeyFetcherInterface
             throw new UnexpectedStatusException;
         }
 
-        $object = json_decode($response->getBody());
+        $object = json_decode($response->getBody()->__toString());
 
         if (! isset($object->jwks_uri)) {
             throw new UnexpectedResponseException;

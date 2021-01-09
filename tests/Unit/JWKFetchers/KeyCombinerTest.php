@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JWTVerifier\Test\Unit\KeyFetchers;
+namespace Batenburg\JWTVerifier\Test\Unit\JWKFetchers;
 
 use Batenburg\JWTVerifier\JWKFetchers\Contracts\KeyFetcher;
 use Batenburg\JWTVerifier\JWKFetchers\KeyCombiner;

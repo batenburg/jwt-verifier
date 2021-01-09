@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JWTVerifier\Test\Unit\KeyFetchers\Adaptors;
+namespace Batenburg\JWTVerifier\Test\Unit\JWKFetchers\Adaptors;
 
 use Batenburg\JWTVerifier\JWKFetchers\Adaptors\JWTFrameworkAdaptor;
 use InvalidArgumentException;
@@ -95,7 +95,6 @@ class JWTFrameworkAdaptorTest extends TestCase
         // Execute
         $results = $this->jwtFrameworkAdaptor->getKeys($jku);
         // Validate
-        $this->assertIsArray($results);
         $this->assertArrayHasKey($kid, $results);
         $this->assertSame($this->getExpectedPublicKey(), $results[$kid]);
     }

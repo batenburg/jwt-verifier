@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Batenburg\JWTVerifier\Test\Unit\KeyFetchers;
+namespace Batenburg\JWTVerifier\Test\Unit\JWKFetchers;
 
 use Batenburg\JWTVerifier\JWKFetchers\Adaptors\Contracts\Adaptor;
 use Batenburg\JWTVerifier\JWKFetchers\Exceptions\UnexpectedResponseException;
@@ -13,6 +13,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * @covers \Batenburg\JWTVerifier\JWKFetchers\KeyFetcher
@@ -22,15 +23,18 @@ class KeyFetcherTest extends TestCase
     /** @var ClientInterface|MockObject */
     private $client;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Http\Message\ResponseInterface */
+    /** @var MockObject|ResponseInterface */
     private $response;
+
+    /** @var MockObject|StreamInterface */
+    private MockObject $stream;
 
     private string $wellKnown;
 
     /** @var Adaptor|MockObject */
     private $adaptor;
 
-    private KeyFetcher $jwkFetcher;
+    private KeyFetcher $keyFetcher;
 
     protected function setUp(): void
     {
@@ -38,9 +42,10 @@ class KeyFetcherTest extends TestCase
 
         $this->client = $this->createMock(ClientInterface::class);
         $this->response = $this->createMock(ResponseInterface::class);
+        $this->stream = $this->createMock(StreamInterface::class);
         $this->wellKnown = 'https://localhost/auth/well-known';
         $this->adaptor = $this->createMock(Adaptor::class);
-        $this->jwkFetcher = new KeyFetcher(
+        $this->keyFetcher = new KeyFetcher(
             $this->client,
             $this->wellKnown,
             $this->adaptor
@@ -65,13 +70,16 @@ class KeyFetcherTest extends TestCase
             ->willReturn(200);
         $this->response->expects($this->once())
             ->method('getBody')
+            ->willReturn($this->stream);
+        $this->stream->expects($this->once())
+            ->method('__toString')
             ->willReturn($this->getExpectedJwksResponse($jku = 'https://oauth.lennart-peters.dev/api/v1/keys'));
         $this->adaptor->expects($this->once())
             ->method('getKeys')
             ->with($jku)
             ->willReturn($keys = ['keys']);
         // Execute
-        $result = $this->jwkFetcher->getKeys();
+        $result = $this->keyFetcher->getKeys();
         // Validate
         $this->assertSame($keys, $result);
     }
@@ -96,9 +104,12 @@ class KeyFetcherTest extends TestCase
             ->willReturn(200);
         $this->response->expects($this->once())
             ->method('getBody')
+            ->willReturn($this->stream);
+        $this->stream->expects($this->once())
+            ->method('__toString')
             ->willReturn('');
         // Execute
-        $this->jwkFetcher->getKeys();
+        $this->keyFetcher->getKeys();
     }
 
     /**
@@ -120,7 +131,7 @@ class KeyFetcherTest extends TestCase
             ->method('getStatusCode')
             ->willReturn(400);
         // Execute
-        $this->jwkFetcher->getKeys();
+        $this->keyFetcher->getKeys();
     }
 
     private function getExpectedJwksResponse(string $jwksUri): string

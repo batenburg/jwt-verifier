@@ -23,6 +23,11 @@ final class DataSet
         return array_key_exists($key, $this->parameters);
     }
 
+    /**
+     * @param string $key
+     * @param null $default
+     * @return mixed|null
+     */
     public function get(string $key, $default = null)
     {
         if (! array_key_exists($key, $this->parameters)) {

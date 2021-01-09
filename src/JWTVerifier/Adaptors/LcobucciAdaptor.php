@@ -42,7 +42,7 @@ class LcobucciAdaptor implements Adaptor
             throw new JWTVerifierException('No KID set.');
         }
 
-        if (!array_key_exists($decoded->headers()->get('kid'), $keys)) {
+        if (!array_key_exists((string)$decoded->headers()->get('kid'), $keys)) {
             throw new JWTVerifierException('No key found');
         }
 
@@ -62,7 +62,7 @@ class LcobucciAdaptor implements Adaptor
         if (!$decoded->signature()->verify(
             $signer,
             $decoded->payload(),
-            new Key($keys[$decoded->headers()->get('kid')])
+            new Key($keys[(string)$decoded->headers()->get('kid')] ?? '')
         )) {
             throw new JWTVerifierException('Invalid signature.');
         }
